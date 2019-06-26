@@ -2,6 +2,7 @@
 
 namespace NxsSpryker\Service\Prometheus\Registry;
 
+use Generated\Shared\Transfer\RenderedMetricsTransfer;
 use NxsSpryker\Service\Prometheus\Collector\Counter;
 use NxsSpryker\Service\Prometheus\Collector\CounterInterface;
 use NxsSpryker\Service\Prometheus\Collector\Gauge;
@@ -37,9 +38,19 @@ class Registry implements RegistryInterface
     }
 
     /**
+     * @return \Generated\Shared\Transfer\RenderedMetricsTransfer
+     */
+    public function renderMetrics(): RenderedMetricsTransfer
+    {
+        return (new RenderedMetricsTransfer())
+            ->setContent($this->renderMetricsContent())
+            ->setMimeType(RenderTextFormat::MIME_TYPE);
+    }
+
+    /**
      * @return string
      */
-    public function renderMetrics(): string
+    protected function renderMetricsContent(): string
     {
         return $this->renderer->render(
             $this->registry->getMetricFamilySamples()

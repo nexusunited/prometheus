@@ -2,6 +2,7 @@
 
 namespace NxsSpryker\Service\Prometheus;
 
+use Generated\Shared\Transfer\RenderedMetricsTransfer;
 use NxsSpryker\Service\Prometheus\Collector\CounterInterface;
 use NxsSpryker\Service\Prometheus\Collector\GaugeInterface;
 use NxsSpryker\Service\Prometheus\Collector\HistogramInterface;
@@ -13,9 +14,9 @@ use Spryker\Service\Kernel\AbstractService;
 class PrometheusService extends AbstractService implements PrometheusServiceInterface
 {
     /**
-     * @return string
+     * @return \Generated\Shared\Transfer\RenderedMetricsTransfer
      */
-    public function renderMetrics(): string
+    public function renderMetrics(): RenderedMetricsTransfer
     {
         return $this->getFactory()
             ->createRegistryContainer()

@@ -2,6 +2,7 @@
 
 namespace NxsSpryker\Service\Prometheus\Registry;
 
+use Generated\Shared\Transfer\RenderedMetricsTransfer;
 use NxsSpryker\Service\Prometheus\Collector\CounterInterface;
 use NxsSpryker\Service\Prometheus\Collector\GaugeInterface;
 use NxsSpryker\Service\Prometheus\Collector\HistogramInterface;
@@ -9,9 +10,9 @@ use NxsSpryker\Service\Prometheus\Collector\HistogramInterface;
 interface RegistryInterface
 {
     /**
-     * @return string
+     * @return \Generated\Shared\Transfer\RenderedMetricsTransfer
      */
-    public function renderMetrics(): string;
+    public function renderMetrics(): RenderedMetricsTransfer;
 
     /**
      * @param string $namespace
