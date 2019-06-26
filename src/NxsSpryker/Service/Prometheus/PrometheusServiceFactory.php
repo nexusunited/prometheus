@@ -66,7 +66,7 @@ class PrometheusServiceFactory extends AbstractServiceFactory
      */
     public function getCounterPlugins(): array
     {
-        return $this->getProvidedDependency(PrometheusServiceDependencyProvider::COUNTER_PLUGINS);
+        return $this->getProvidedDependency(PrometheusDependencyProvider::COUNTER_PLUGINS);
     }
 
     /**
@@ -74,7 +74,7 @@ class PrometheusServiceFactory extends AbstractServiceFactory
      */
     public function getGaugePlugins(): array
     {
-        return $this->getProvidedDependency(PrometheusServiceDependencyProvider::GAUGE_PLUGINS);
+        return $this->getProvidedDependency(PrometheusDependencyProvider::GAUGE_PLUGINS);
     }
 
     /**
@@ -82,6 +82,6 @@ class PrometheusServiceFactory extends AbstractServiceFactory
      */
     public function getHistogramPlugins(): array
     {
-        return $this->getProvidedDependency(PrometheusServiceDependencyProvider::HISTOGRAM_PLUGINS);
+        return $this->getProvidedDependency(PrometheusDependencyProvider::HISTOGRAM_PLUGINS);
     }
 }

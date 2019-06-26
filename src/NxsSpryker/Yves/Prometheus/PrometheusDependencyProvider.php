@@ -29,7 +29,7 @@ class PrometheusDependencyProvider extends AbstractBundleDependencyProvider
     protected function addPrometheusService(Container $container)
     {
         $container[static::PROMETHEUS_SERVICE] = function (Container $container) {
-            $container->getLocator()->prometheus()->service();
+            return $container->getLocator()->prometheus()->service();
         };
 
         return $this;

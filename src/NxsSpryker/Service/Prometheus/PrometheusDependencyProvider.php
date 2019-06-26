@@ -5,7 +5,7 @@ namespace NxsSpryker\Service\Prometheus;
 use Spryker\Service\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Service\Kernel\Container;
 
-class PrometheusServiceDependencyProvider extends AbstractBundleDependencyProvider
+class PrometheusDependencyProvider extends AbstractBundleDependencyProvider
 {
     public const COUNTER_PLUGINS = 'COUNTER_PLUGINS';
     public const GAUGE_PLUGINS = 'GAUGE_PLUGINS';

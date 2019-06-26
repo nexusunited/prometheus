@@ -29,7 +29,7 @@ class PrometheusControllerProvider extends AbstractYvesControllerProvider
             self::ROUTE_METRICS,
             'Prometheus',
             'Prometheus',
-            'Prometheus'
+            'metrics'
         );
 
         return $this;
