@@ -1,0 +1,5 @@
+parameters:
+  bootstrap: %rootDir%/../../../phpstan-bootstrap.php
+  level: 5
+  paths:
+    - src

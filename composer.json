@@ -1,0 +1,45 @@
+{
+  "name": "nxsspryker/prometheus",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Linas Linartas",
+      "email": "linas.linartas@nfq.lt"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "spryker/kernel": "^3.0.0",
+    "spryker/zed-request": "3.*",
+    "jimdo/prometheus_client_php": "^0.9.1",
+    "spryker-shop/shop-application": "^1.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "NxsSpryker\\": "src/NxsSpryker"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require-dev": {
+    "spryker/code-sniffer": "*",
+    "spryker/architecture-sniffer": "*",
+    "phpstan/phpstan": "*"
+  },
+  "scripts": {
+    "code-sniffer": [
+      "vendor/bin/phpcs --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src && tput setaf 2;echo Good Style!; tput sgr0;"
+    ],
+    "architecture-sniffer": [
+      "vendor/bin/phpmd src/ text  vendor/spryker/architecture-sniffer/src/ruleset.xml --minimumpriority=2 && tput setaf 2;echo Good Architecture!; tput sgr0;"
+    ],
+    "phpstan": [
+      "vendor/bin/phpstan analyse --no-progress --verbose && tput setaf 2; echo Good Static Typing!; tput sgr0;"
+    ],
+    "code-quality": [
+      "composer run code-sniffer",
+      "composer run architecture-sniffer",
+      "composer run phpstan"
+    ]
+  }
+}
