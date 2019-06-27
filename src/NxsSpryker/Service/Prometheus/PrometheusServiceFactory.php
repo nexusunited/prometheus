@@ -34,6 +34,7 @@ class PrometheusServiceFactory extends AbstractServiceFactory
     public function createRegistryFactory(): RegistryFactoryInterface
     {
         return new RegistryFactory(
+            $this->createCollectorPluginCollection(),
             $this->getConfig()->getAdapter(),
             $this->getConfig()->getAdapterOptions()
         );

@@ -33,6 +33,17 @@ interface PrometheusServiceInterface
     public function registerCounter(string $namespace, string $name, string $help, array $labels = []): CounterInterface;
 
     /**
+     * Get counter from plugin
+     *
+     * @api
+     *
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\CounterInterface
+     */
+    public function getCounterFromPlugin(string $key): CounterInterface;
+
+    /**
      * Get counter.
      *
      * @api
@@ -71,6 +82,17 @@ interface PrometheusServiceInterface
      * @return \NxsSpryker\Service\Prometheus\Collector\GaugeInterface
      */
     public function registerGauge(string $namespace, string $name, string $help, array $labels = []): GaugeInterface;
+
+    /**
+     * Get gauge from plugin
+     *
+     * @api
+     *
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\GaugeInterface
+     */
+    public function getGaugeFromPlugin(string $key): GaugeInterface;
 
     /**
      * Get gauge.
@@ -118,6 +140,17 @@ interface PrometheusServiceInterface
         array $labels = [],
         ?array $buckets = null
     ): HistogramInterface;
+
+    /**
+     * Get histogram from plugin.
+     *
+     * @api
+     *
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\HistogramInterface
+     */
+    public function getHistogramFromPlugin(string $key): HistogramInterface;
 
     /**
      * Get histogram.

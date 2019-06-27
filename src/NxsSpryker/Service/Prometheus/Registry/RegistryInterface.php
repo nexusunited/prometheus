@@ -25,6 +25,13 @@ interface RegistryInterface
     public function registerCounter(string $namespace, string $name, string $help, array $labels = []): CounterInterface;
 
     /**
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\CounterInterface
+     */
+    public function getCounterFromPlugin(string $key): CounterInterface;
+
+    /**
      * @param string $namespace
      * @param string $name
      *
@@ -51,6 +58,13 @@ interface RegistryInterface
      * @return \NxsSpryker\Service\Prometheus\Collector\GaugeInterface
      */
     public function registerGauge(string $namespace, string $name, string $help, array $labels = []): GaugeInterface;
+
+    /**
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\GaugeInterface
+     */
+    public function getGaugeFromPlugin(string $key): GaugeInterface;
 
     /**
      * @param string $namespace
@@ -86,6 +100,13 @@ interface RegistryInterface
         array $labels = [],
         ?array $buckets = null
     ): HistogramInterface;
+
+    /**
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\HistogramInterface
+     */
+    public function getHistogramFromPlugin(string $key): HistogramInterface;
 
     /**
      * @param string $namespace

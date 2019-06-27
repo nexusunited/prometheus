@@ -41,7 +41,7 @@ class PrometheusDependencyProvider extends AbstractBundleDependencyProvider
     }
 
     /**
-     * @return \NxsSpryker\Service\Prometheus\Plugin\CounterPluginInterface[]
+     * @return \NxsSpryker\Service\Prometheus\Plugin\CounterPluginInterface[] array<string, CounterPluginInterface>
      */
     protected function getCounterPlugins(): array
     {
@@ -63,7 +63,7 @@ class PrometheusDependencyProvider extends AbstractBundleDependencyProvider
     }
 
     /**
-     * @return \NxsSpryker\Service\Prometheus\Plugin\GaugePluginInterface[]
+     * @return \NxsSpryker\Service\Prometheus\Plugin\GaugePluginInterface[] array<string, GaugePluginInterface>
      */
     protected function getGaugePlugins(): array
     {
@@ -85,7 +85,7 @@ class PrometheusDependencyProvider extends AbstractBundleDependencyProvider
     }
 
     /**
-     * @return \NxsSpryker\Service\Prometheus\Plugin\HistogramPluginInterface[]
+     * @return \NxsSpryker\Service\Prometheus\Plugin\HistogramPluginInterface[] array<string, HistogramPluginInterface>
      */
     protected function getHistogramPlugins(): array
     {

@@ -9,6 +9,7 @@ use NxsSpryker\Service\Prometheus\Collector\Gauge;
 use NxsSpryker\Service\Prometheus\Collector\GaugeInterface;
 use NxsSpryker\Service\Prometheus\Collector\Histogram;
 use NxsSpryker\Service\Prometheus\Collector\HistogramInterface;
+use NxsSpryker\Service\Prometheus\Plugin\CollectorPluginCollectionInterface;
 use Prometheus\CollectorRegistry;
 use Prometheus\Counter as PrometheusCounter;
 use Prometheus\Gauge as PrometheusGauge;
@@ -28,11 +29,21 @@ class Registry implements RegistryInterface
     private $renderer;
 
     /**
+     * @var \NxsSpryker\Service\Prometheus\Plugin\CollectorPluginCollectionInterface
+     */
+    private $pluginCollection;
+
+    /**
+     * @param \NxsSpryker\Service\Prometheus\Plugin\CollectorPluginCollectionInterface $pluginCollection
      * @param \Prometheus\CollectorRegistry $registry
      * @param \Prometheus\RenderTextFormat $renderer
      */
-    public function __construct(CollectorRegistry $registry, RenderTextFormat $renderer)
-    {
+    public function __construct(
+        CollectorPluginCollectionInterface $pluginCollection,
+        CollectorRegistry $registry,
+        RenderTextFormat $renderer
+    ) {
+        $this->pluginCollection = $pluginCollection;
         $this->registry = $registry;
         $this->renderer = $renderer;
     }
@@ -68,6 +79,21 @@ class Registry implements RegistryInterface
     public function registerCounter(string $namespace, string $name, string $help, array $labels = []): CounterInterface
     {
         return $this->createCounter($this->registry->registerCounter($namespace, $name, $help, $labels));
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\CounterInterface
+     */
+    public function getCounterFromPlugin(string $key): CounterInterface
+    {
+        $plugin = $this->pluginCollection->getCounterPlugin($key);
+
+        return $this->getCounter(
+            $plugin->getNamespace(),
+            $plugin->getName()
+        );
     }
 
     /**
@@ -115,6 +141,21 @@ class Registry implements RegistryInterface
     public function registerGauge(string $namespace, string $name, string $help, array $labels = []): GaugeInterface
     {
         return $this->createGauge($this->registry->registerGauge($namespace, $name, $help, $labels));
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\GaugeInterface
+     */
+    public function getGaugeFromPlugin(string $key): GaugeInterface
+    {
+        $plugin = $this->pluginCollection->getGaugePlugin($key);
+
+        return $this->getGauge(
+            $plugin->getNamespace(),
+            $plugin->getName()
+        );
     }
 
     /**
@@ -169,6 +210,21 @@ class Registry implements RegistryInterface
     ): HistogramInterface {
         return $this->createHistogram(
             $this->registry->registerHistogram($namespace, $name, $help, $labels, $buckets)
+        );
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\HistogramInterface
+     */
+    public function getHistogramFromPlugin(string $key): HistogramInterface
+    {
+        $plugin = $this->pluginCollection->getHistogramPlugin($key);
+
+        return $this->getHistogram(
+            $plugin->getNamespace(),
+            $plugin->getName()
         );
     }
 

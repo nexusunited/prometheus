@@ -41,6 +41,19 @@ class PrometheusService extends AbstractService implements PrometheusServiceInte
     }
 
     /**
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\CounterInterface
+     */
+    public function getCounterFromPlugin(string $key): CounterInterface
+    {
+        return $this->getFactory()
+            ->createRegistryContainer()
+            ->getRegistry()
+            ->getCounterFromPlugin($key);
+    }
+
+    /**
      * @param string $namespace
      * @param string $name
      *
@@ -84,6 +97,19 @@ class PrometheusService extends AbstractService implements PrometheusServiceInte
             ->createRegistryContainer()
             ->getRegistry()
             ->registerGauge($namespace, $name, $help, $labels);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\GaugeInterface
+     */
+    public function getGaugeFromPlugin(string $key): GaugeInterface
+    {
+        return $this->getFactory()
+            ->createRegistryContainer()
+            ->getRegistry()
+            ->getGaugeFromPlugin($key);
     }
 
     /**
@@ -136,6 +162,19 @@ class PrometheusService extends AbstractService implements PrometheusServiceInte
             ->createRegistryContainer()
             ->getRegistry()
             ->registerHistogram($namespace, $name, $help, $labels, $buckets);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return \NxsSpryker\Service\Prometheus\Collector\HistogramInterface
+     */
+    public function getHistogramFromPlugin(string $key): HistogramInterface
+    {
+        return $this->getFactory()
+            ->createRegistryContainer()
+            ->getRegistry()
+            ->getHistogramFromPlugin($key);
     }
 
     /**
