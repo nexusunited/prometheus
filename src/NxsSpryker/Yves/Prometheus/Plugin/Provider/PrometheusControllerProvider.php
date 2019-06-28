@@ -25,7 +25,7 @@ class PrometheusControllerProvider extends AbstractYvesControllerProvider
     protected function addMetricRoute()
     {
         $this->createController(
-            '/prometheus/metric',
+            '/prometheus/metrics',
             self::ROUTE_METRICS,
             'Prometheus',
             'Prometheus',
